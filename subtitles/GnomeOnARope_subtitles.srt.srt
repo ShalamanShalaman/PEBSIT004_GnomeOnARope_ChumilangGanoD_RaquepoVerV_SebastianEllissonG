@@ -1,0 +1,895 @@
+1
+00:00:00,650 --> 00:00:01,890
+Good day everyone.
+
+2
+00:00:02,310 --> 00:00:05,430
+This is Gnome's Well, a 2D game where
+
+3
+00:00:05,430 --> 00:00:08,210
+you play as a gnome searching for treasure
+
+4
+00:00:08,210 --> 00:00:11,190
+in a well while dodging traps along the
+
+5
+00:00:11,190 --> 00:00:11,430
+way.
+
+6
+00:00:12,130 --> 00:00:13,390
+The game is simple.
+
+7
+00:00:14,330 --> 00:00:16,750
+You control the length of the rope as
+
+8
+00:00:16,750 --> 00:00:19,250
+it goes up and down the well while
+
+9
+00:00:19,250 --> 00:00:22,050
+tilting the phone to move the gnome left
+
+10
+00:00:22,050 --> 00:00:22,510
+and right.
+
+11
+00:00:23,370 --> 00:00:26,130
+So I will show you a quick demo
+
+12
+00:00:26,130 --> 00:00:27,690
+in this activity.
+
+13
+00:00:36,800 --> 00:00:38,220
+So here's the game.
+
+14
+00:01:01,120 --> 00:01:04,000
+So now we go into the overview of
+
+15
+00:01:04,000 --> 00:01:06,220
+architecture and the main components.
+
+16
+00:01:07,420 --> 00:01:11,540
+So for the architecture, Gnome's well core architecture
+
+17
+00:01:11,540 --> 00:01:16,040
+uses Unity's 2D physics engine as its foundation
+
+18
+00:01:16,620 --> 00:01:19,280
+allowing for dynamic movement of the gnome and
+
+19
+00:01:19,280 --> 00:01:21,140
+its chain link rope system.
+
+20
+00:01:21,960 --> 00:01:24,820
+The player interaction is managed by a dual
+
+21
+00:01:24,820 --> 00:01:26,860
+system input system.
+
+22
+00:01:27,960 --> 00:01:31,340
+Device tilt for horizontal movement and on-screen
+
+23
+00:01:31,340 --> 00:01:33,000
+buttons for rope length.
+
+24
+00:01:34,460 --> 00:01:37,800
+The in-game elements including the objective interactions,
+
+25
+00:01:38,460 --> 00:01:41,680
+win-loss conditions, and camera behavior are handled
+
+26
+00:01:41,680 --> 00:01:43,420
+by a central game manager.
+
+27
+00:01:45,060 --> 00:01:47,760
+So now we go into the main components.
+
+28
+00:01:55,400 --> 00:01:57,380
+The first component is the gnome.
+
+29
+00:01:58,280 --> 00:02:01,420
+The player character is a ragdoll composed of
+
+30
+00:02:01,420 --> 00:02:05,840
+multiple rigid bodies connected by joints, allowing for
+
+31
+00:02:05,840 --> 00:02:08,960
+a realistic physical movement and reactions to collisions.
+
+32
+00:02:10,220 --> 00:02:11,280
+Next is the rope.
+
+33
+00:02:12,280 --> 00:02:15,380
+A dynamic system of interconnected rigid bodies and
+
+34
+00:02:15,380 --> 00:02:15,760
+joints.
+
+35
+00:02:16,720 --> 00:02:19,180
+Its length can be increased or decreased by
+
+36
+00:02:19,180 --> 00:02:22,900
+the player influencing the gnome's descent and movement.
+
+37
+00:02:23,780 --> 00:02:25,700
+Next is the input system.
+
+38
+00:02:26,260 --> 00:02:28,960
+The player control involves tilting the device to
+
+39
+00:02:28,960 --> 00:02:31,260
+move the gnome left and right and using
+
+40
+00:02:31,860 --> 00:02:34,460
+on-screen up and down buttons to adjust
+
+41
+00:02:34,460 --> 00:02:35,380
+the rope's length.
+
+42
+00:02:36,540 --> 00:02:38,080
+Next is the collision detection.
+
+43
+00:02:39,340 --> 00:02:41,460
+Touching a trap leads to the gnome's death
+
+44
+00:02:41,460 --> 00:02:43,760
+which prompts a new gnome to appear.
+
+45
+00:02:45,100 --> 00:02:48,400
+Touching treasure updates the gnome's sprites to show
+
+46
+00:02:48,400 --> 00:02:50,660
+it holding the treasure.
+
+47
+00:02:51,980 --> 00:02:55,180
+Touching the well's top while holding a treasure
+
+48
+00:02:55,180 --> 00:02:57,040
+signifies the player's win.
+
+49
+00:02:58,140 --> 00:02:59,480
+Next is the camera.
+
+50
+00:03:00,320 --> 00:03:02,800
+The camera follows the gnome as it moves
+
+51
+00:03:02,800 --> 00:03:03,580
+down the well.
+
+52
+00:03:04,860 --> 00:03:07,840
+But it's restricted by set top and bottom
+
+53
+00:03:07,840 --> 00:03:10,660
+boundaries so player don't see empty space outside
+
+54
+00:03:10,660 --> 00:03:11,560
+the game area.
+
+55
+00:03:12,700 --> 00:03:14,460
+Lastly, the game manager.
+
+56
+00:03:15,780 --> 00:03:19,020
+A central object which orchestrates the overall game
+
+57
+00:03:19,020 --> 00:03:19,300
+flow.
+
+58
+00:03:20,140 --> 00:03:23,880
+Responsible for managing game states, creating new gnomes,
+
+59
+00:03:24,440 --> 00:03:28,400
+coordinating interactions with traps and treasures.
+
+60
+00:03:29,080 --> 00:03:32,600
+Handling menus and connecting other systems like the
+
+61
+00:03:32,600 --> 00:03:34,580
+rope and camera to the current gnome.
+
+62
+00:03:36,320 --> 00:03:38,360
+Now we go to the step-by-step
+
+63
+00:03:38,360 --> 00:03:39,480
+coding highlights.
+
+64
+00:03:41,660 --> 00:03:44,020
+So first we go to the GameManager.
+
+65
+00:03:45,980 --> 00:03:48,080
+This is the script responsible for the game
+
+66
+00:03:48,080 --> 00:03:53,220
+states, gnome creation, reset, win-loss conditions and
+
+67
+00:03:53,220 --> 00:03:54,220
+UI visibility.
+
+68
+00:03:59,210 --> 00:04:00,390
+Next is the Rope.
+
+69
+00:04:03,470 --> 00:04:08,810
+This script manages dynamic rope generation, extension, retraction
+
+70
+00:04:08,810 --> 00:04:11,490
+and visual rendering based on physics.
+
+71
+00:04:17,089 --> 00:04:18,550
+Next is the Gnome.
+
+72
+00:04:19,370 --> 00:04:21,470
+This handles the gnome's individual state.
+
+73
+00:04:21,670 --> 00:04:23,990
+For example, holding treasure or dead.
+
+74
+00:04:24,690 --> 00:04:28,610
+Damage responses and initiate death effects.
+
+75
+00:04:31,450 --> 00:04:33,450
+So next is the InputManager.
+
+76
+00:04:35,870 --> 00:04:39,270
+Processes device tilt for sideways movement and manages
+
+77
+00:04:39,270 --> 00:04:42,710
+rope lengthening or shortening flags from UI buttons.
+
+78
+00:04:43,730 --> 00:04:45,530
+Next is the CameraFollow.
+
+79
+00:04:47,690 --> 00:04:50,910
+This keeps the camera's vertical position, tracking the
+
+80
+00:04:50,910 --> 00:04:53,730
+gnome within defined upper and lower boundaries of
+
+81
+00:04:53,730 --> 00:04:54,130
+the well.
+
+82
+00:04:55,570 --> 00:04:58,070
+And lastly, the SignalOnTouch.
+
+83
+00:04:59,690 --> 00:05:02,670
+A generic script used by interactive objects like
+
+84
+00:05:02,670 --> 00:05:06,930
+traps, treasures and exit to detect player collisions
+
+85
+00:05:06,930 --> 00:05:10,350
+and trigger specific unit events.
+
+86
+00:05:11,190 --> 00:05:14,930
+For example, the spike traps uses SignalOnTouch
+
+87
+00:05:14,930 --> 00:05:17,090
+to make sure the gnome dies when
+
+88
+00:05:17,090 --> 00:05:19,190
+it touches or collides with it.
+
+89
+00:05:19,890 --> 00:05:21,770
+Next we go to the logic breakdown.
+
+90
+00:05:22,850 --> 00:05:24,250
+First is the rope physics.
+
+91
+00:05:25,570 --> 00:05:28,510
+The rope is dynamically generated during runtime as
+
+92
+00:05:28,510 --> 00:05:31,530
+a chain of game objects, each provided with
+
+93
+00:05:31,530 --> 00:05:33,810
+a rigid 2D and a spring joint 2D
+
+94
+00:05:33,810 --> 00:05:34,410
+components.
+
+95
+00:05:35,630 --> 00:05:38,950
+These joints link the rope segments together with
+
+96
+00:05:38,950 --> 00:05:41,290
+the top anchored to the well and the
+
+97
+00:05:41,290 --> 00:05:43,330
+bottom connected to the gnome's leg rope.
+
+98
+00:05:44,250 --> 00:05:47,670
+The length is adjusted with the update method
+
+99
+00:05:47,670 --> 00:05:49,090
+of the rope script.
+
+100
+00:05:49,710 --> 00:05:52,670
+This method changes the spring joint 2D distance
+
+101
+00:05:52,670 --> 00:05:55,470
+of the top segment and adds or removes
+
+102
+00:05:55,470 --> 00:05:58,670
+segments based on the player's input through on
+
+103
+00:05:58,670 --> 00:05:59,510
+-screen buttons.
+
+104
+00:05:59,910 --> 00:06:03,730
+A line renderer component is updated each frame
+
+105
+00:06:03,730 --> 00:06:05,450
+to visually represent the rope.
+
+106
+00:06:07,560 --> 00:06:08,620
+Next is collision.
+
+107
+00:06:09,660 --> 00:06:12,220
+Collision is managed by the SignalOnTouch.cs
+
+108
+00:06:12,220 --> 00:06:16,620
+which is attached to traps, treasures and
+
+109
+00:06:16,620 --> 00:06:19,640
+the exit to detect contact with the gnome.
+
+110
+00:06:20,360 --> 00:06:23,500
+When triggered, the script uses a pre-configured
+
+111
+00:06:23,500 --> 00:06:26,740
+unit event that the game manager responds to.
+
+112
+00:06:27,580 --> 00:06:32,460
+For traps, this calls trapTouch or fireTrapTouch, resulting
+
+113
+00:06:32,460 --> 00:06:34,220
+in the gnome's death and respawn.
+
+114
+00:06:34,980 --> 00:06:39,580
+For treasures, it calls treasureCollected, which sets gnome
+
+115
+00:06:39,580 --> 00:06:44,220
+.holdingTreasure equals true, and updates gnome's arm sprite
+
+116
+00:06:44,220 --> 00:06:45,820
+by the sprite swapper.
+
+117
+00:06:47,000 --> 00:06:51,500
+At the exit, exitReach is called, which checks
+
+118
+00:06:51,500 --> 00:06:54,120
+the holding treasure flag to determine if the
+
+119
+00:06:54,120 --> 00:06:55,940
+player has achieved a win condition.
+
+120
+00:06:57,400 --> 00:06:59,920
+Next is scoring or win condition.
+
+121
+00:07:00,680 --> 00:07:04,100
+Scoring is based on treasureCollection, which also serves
+
+122
+00:07:04,100 --> 00:07:06,200
+as the player's primary goal.
+
+123
+00:07:07,020 --> 00:07:08,820
+The game is won when the gnome reaches
+
+124
+00:07:08,820 --> 00:07:10,520
+the exit at the top of the well,
+
+125
+00:07:11,240 --> 00:07:13,300
+while the holding treasure flag is true.
+
+126
+00:07:14,440 --> 00:07:17,300
+This condition is evaluated by the game manager
+
+127
+00:07:17,300 --> 00:07:23,200
+.exitReach method, which if met, triggers the win
+
+128
+00:07:23,200 --> 00:07:25,380
+state and displays the "You win" UI.
+
+129
+00:07:27,690 --> 00:07:31,210
+And lastly, the UI or the User Interface.
+
+130
+00:07:32,510 --> 00:07:34,970
+The UI includes up and down buttons that
+
+131
+00:07:34,970 --> 00:07:39,070
+adjust the rope lengths using event triggers, menu
+
+132
+00:07:39,070 --> 00:07:43,010
+screens for gameplay and navigations, and an invincibility
+
+133
+00:07:43,010 --> 00:07:45,970
+toggle linked to the game manager.
+
+134
+00:07:47,130 --> 00:07:51,250
+The game manager controls the menus are active
+
+135
+00:07:51,250 --> 00:07:54,730
+based on game state, while event triggers handles
+
+136
+00:07:54,730 --> 00:07:59,230
+continuous button input, and the canvas scaler keeps
+
+137
+00:07:59,230 --> 00:08:02,090
+the layout consistent across devices.
+
+138
+00:08:02,930 --> 00:08:05,450
+Now we go to the assets and folder
+
+139
+00:08:05,450 --> 00:08:06,050
+structure.
+
+140
+00:08:09,900 --> 00:08:13,600
+The assets folder contains important subfolders for organizing
+
+141
+00:08:13,600 --> 00:08:14,440
+game assets.
+
+142
+00:08:15,180 --> 00:08:17,080
+First, we go to the Scripts.
+
+143
+00:08:19,750 --> 00:08:22,390
+This folder contains all the C# code
+
+144
+00:08:22,390 --> 00:08:23,070
+for the game.
+
+145
+00:08:25,850 --> 00:08:27,410
+Next, we go to the Sounds.
+
+146
+00:08:30,440 --> 00:08:33,480
+This folder contains both music and sound effects.
+
+147
+00:08:36,690 --> 00:08:38,470
+Next, we go to the Sprites.
+
+148
+00:08:42,750 --> 00:08:45,870
+This folder contains all the sprite images, which
+
+149
+00:08:45,870 --> 00:08:48,230
+are further organized into subfolders.
+
+150
+00:08:51,450 --> 00:08:52,410
+Next is the Gnome.
+
+151
+00:08:53,330 --> 00:08:56,470
+This folder contains prefabs for the gnome character,
+
+152
+00:08:56,770 --> 00:08:59,590
+as well as related objects like rope and
+
+153
+00:08:59,590 --> 00:09:00,770
+the particle effects.
+
+154
+00:09:04,780 --> 00:09:06,340
+Next, we go to the Level.
+
+155
+00:09:07,620 --> 00:09:11,540
+This folder contains prefabs for the level itself,
+
+156
+00:09:12,120 --> 00:09:16,580
+including the background, walls, decorative objects, and traps.
+
+157
+00:09:17,920 --> 00:09:20,020
+Lastly, we go to the App Resources.
+
+158
+00:09:21,400 --> 00:09:24,380
+This folder contains resources used by the entire
+
+159
+00:09:24,380 --> 00:09:28,580
+applications, such as its icon and splash screen.
+
+160
+00:09:29,360 --> 00:09:31,420
+Now we go to the build and run
+
+161
+00:09:31,420 --> 00:09:32,080
+instructions.
+
+162
+00:09:33,060 --> 00:09:36,400
+To test the game, install Unity Remote.
+
+163
+00:09:36,960 --> 00:09:39,980
+Download the Unity Remote app from your device's
+
+164
+00:09:39,980 --> 00:09:40,540
+app store.
+
+165
+00:09:41,800 --> 00:09:43,980
+Number two, connect device.
+
+166
+00:09:45,180 --> 00:09:47,840
+Launch Unity Remote on your phone and connect
+
+167
+00:09:47,840 --> 00:09:51,240
+your phone to your computer using a USB
+
+168
+00:09:51,240 --> 00:09:51,720
+cable.
+
+169
+00:09:52,920 --> 00:09:57,020
+Number three, go to configure Unity Editor.
+
+170
+00:09:57,760 --> 00:10:00,460
+In the Unity Editor, open the edit menu
+
+171
+00:10:00,460 --> 00:10:03,700
+and choose project settings and then go to
+
+172
+00:10:03,700 --> 00:10:04,060
+editor.
+
+173
+00:10:05,120 --> 00:10:09,300
+In the inspector, change the device settings to
+
+174
+00:10:09,300 --> 00:10:14,420
+your phone from none to your any Android
+
+175
+00:10:14,420 --> 00:10:14,780
+device.
+
+176
+00:10:16,240 --> 00:10:19,880
+Then next and lastly, launch the game in
+
+177
+00:10:19,880 --> 00:10:20,280
+editor.
+
+178
+00:10:21,520 --> 00:10:23,840
+Click the play button in the Unity Editor.
+
+179
+00:10:24,780 --> 00:10:27,680
+The game will appear on the connected device
+
+180
+00:10:27,680 --> 00:10:29,960
+and you can interact with it as if
+
+181
+00:10:29,960 --> 00:10:31,000
+it were installed.
+
+182
+00:10:32,260 --> 00:10:34,760
+Now we go to the known issues and
+
+183
+00:10:34,760 --> 00:10:35,300
+improvement.
+
+184
+00:10:36,820 --> 00:10:39,440
+For the known issues, the first is Unity
+
+185
+00:10:39,440 --> 00:10:40,380
+Remote rotation.
+
+186
+00:10:41,320 --> 00:10:43,660
+If the phone is rotated too far while
+
+187
+00:10:43,660 --> 00:10:46,640
+using Unity Remote, it may switch to landscape
+
+188
+00:10:46,640 --> 00:10:49,360
+mode and stretching the picture.
+
+189
+00:10:50,400 --> 00:10:53,320
+The document suggests turning on the device's rotation
+
+190
+00:10:53,320 --> 00:10:54,680
+lock to prevent this.
+
+191
+00:10:55,500 --> 00:10:57,660
+Next is the compiler errors.
+
+192
+00:10:58,340 --> 00:11:02,560
+When initially adding the Gnome script, compiler errors
+
+193
+00:11:02,560 --> 00:11:06,300
+related to remove after delay are expected as
+
+194
+00:11:06,300 --> 00:11:07,780
+the class is defined later.
+
+195
+00:11:09,200 --> 00:11:13,500
+The tutorials provided code for GameManager.cs and
+
+196
+00:11:13,500 --> 00:11:19,020
+Singleton.cs scripts utilize the deprecated Unity functions
+
+197
+00:11:20,160 --> 00:11:23,880
+FindObjectOfType and FindObjectsOfType.
+
+198
+00:11:24,560 --> 00:11:29,000
+The engine recommends replacing this with their more
+
+199
+00:11:29,000 --> 00:11:36,080
+efficient modern equivalents FindFirstObjectByType and FindObjectsByType.
+
+200
+00:11:37,400 --> 00:11:40,800
+And last for the known issues, since Unity
+
+201
+00:11:40,800 --> 00:11:44,440
+Remote does not run the game natively, instead,
+
+202
+00:11:44,780 --> 00:11:48,360
+it streams a heavily compressed video feed from
+
+203
+00:11:48,360 --> 00:11:50,140
+the editor to the mobile device.
+
+204
+00:11:50,880 --> 00:11:54,620
+The compression can potentially cause significant input lag
+
+205
+00:11:54,620 --> 00:11:58,340
+and visual degradation, which may not provide an
+
+206
+00:11:58,340 --> 00:12:01,040
+accurate representation of the final game.
+
+207
+00:12:02,300 --> 00:12:06,200
+And for our possible improvements, the possible improvements
+
+208
+00:12:06,200 --> 00:12:08,560
+would be adding a ghost sprite that appears
+
+209
+00:12:08,560 --> 00:12:12,060
+when the gnome dies, introducing new traps like
+
+210
+00:12:12,060 --> 00:12:16,660
+swinging blades and flamethrowers, creating more levels and
+
+211
+00:12:16,660 --> 00:12:20,500
+enhancing visuals with particle effects around the treasures
+
+212
+00:12:20,500 --> 00:12:21,180
+and walls.
+
+213
+00:12:21,780 --> 00:12:25,440
+A burning effect could also be implemented as
+
+214
+00:12:25,440 --> 00:12:26,500
+an extra challenge.
+
+215
+00:12:27,340 --> 00:12:29,860
+So that concludes our presentation.
+
+216
+00:12:30,940 --> 00:12:32,680
+Before I will end this video, I would
+
+217
+00:12:32,680 --> 00:12:35,320
+like to introduce myself and my group members.
+
+218
+00:12:36,060 --> 00:12:39,360
+I am Jan Ellisson Sebastian, their leader, and
+
+219
+00:12:39,360 --> 00:12:42,000
+my group members are Ver Raquepo and
+
+220
+00:12:42,000 --> 00:12:43,140
+Gano Spencer Chumilang.
+
+221
+00:12:44,020 --> 00:12:47,420
+They're responsible for developing and coding this project.
+
+222
+00:12:48,780 --> 00:12:51,740
+And lastly, here's the link to our github
+
+223
+00:12:51,740 --> 00:12:52,460
+repository.
+
+224
+00:13:07,320 --> 00:13:09,880
+So that's it and thank you for watching.
