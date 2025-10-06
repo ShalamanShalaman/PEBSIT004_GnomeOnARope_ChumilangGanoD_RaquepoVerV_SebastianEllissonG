@@ -29,3 +29,6 @@ Group Members & Contributions
 Gano Spencer Chumilang - Developer
 Ver Raquepo - Developer
 Jan Ellisson Sebastian - Leader, Video Presenter
+
+Final Commit
+Sep 30, 2025
